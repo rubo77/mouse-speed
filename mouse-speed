@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# source code revision: $Revision:$
+
 #----------- usage examples ---------#
 # decellerate the mouse for 50%:
 # mouse-speed -d 50
