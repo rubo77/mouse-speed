@@ -5,10 +5,13 @@ Bash script to increase or decrease the speed of your mouse and touchpad
 ### usage
 decellerate the mouse for 50%:
 > mouse-speed -d 50
+
 accelerate the mouse for 50%
 > mouse-speed -a 50
+
 reset mouse speed to 100%
 > mouse-speed -r 
+
 set mouse speed to 30%
 > mouse-speed -s 30
 
@@ -25,6 +28,7 @@ is to postpone the break, which does not trigger the event, that only fires, if 
 
 options for start of a "micro-break":
 > mouse-speed -d 50
+
 Option to define when a "micro-break" ends:
 > mouse-speed -r
 
@@ -35,6 +39,7 @@ Option to define when a "micro-break" ends:
 
 + http://coffeeplusplus.z11.de
 
+An ergonomic alternative Keyboardlayout for typing with both hands and optional with only one
 
 
 ## Copyright and license
