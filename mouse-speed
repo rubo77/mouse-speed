@@ -1,17 +1,29 @@
 #!/bin/bash
 
-# usage examples:
+#----------- usage examples ---------#
 # decellerate the mouse for 50%:
 # mouse-speed -d 50
-# accelerate the mouse for 50%
+#
+# accelerate the mouse for 50%:
 # mouse-speed -a 50
-# reset mouse speed to 100%
+#
+# reset mouse speed to 100%:
 # mouse-speed -r 
-# set mouse speed to 30%
+#
+# set mouse speed to 30%:
 # mouse-speed -s 30
 
-#installation:
-#In case you use another mouse than logitech, adapt the variables MOUSE_STRING and TOUCHPAD_STRING
+#--------- installation --------------#
+# In case you use another mouse than logitech, adapt the 
+# variables MOUSE_STRING and TOUCHPAD_STRING in the configuration section
+
+#-------------- Author:  -------------#
+#		Ruben Barkow
+# Website: 	http://coffeeplusplus.z11.de
+# 		An ergonomic alternative keyboard-layout for typing with both hands and optional with only one (english and german)
+
+#--- Copyright and license -----------#
+#This code is covered by the GNU General Public License 3.
 
 # ---------- configuration -----------#
 #I use a Logitech usb mouse too.
@@ -26,7 +38,7 @@ TOUCHPAD_STRING="touchpad"
 TOUCHPAD_DECELERATION=1.5 # don't set below 1.0 !!!
 TOUCHPAD_SCALING=10
 
-# -------- end of configuration -------#
+# ------- end of configuration -------#
 
 #file where the current speed is saved:
 CURRENTSPEEDFILE=/tmp/.mouse-coffee.current
