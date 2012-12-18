@@ -10,7 +10,8 @@
 # set mouse speed to 30%
 # mouse-speed -s 30
 
-
+#installation:
+#In case you use another mouse than logitech, adapt the variables MOUSE_STRING and TOUCHPAD_STRING
 
 #file where the current speed is saved:
 CURRENTSPEEDFILE=/tmp/.mouse-coffee.current
@@ -19,13 +20,12 @@ CURRENTSPEED=100
 
 #I use a Logitech usb mouse too.
 #So for a Logitech mouse use this string:
-
-MOUSE_STRING=Logitech
+MOUSE_STRING="Logitech"
 # 1.2 and 10 are suitable values for the mouse
 MOUSE_DECELERATION=1.2 # don't set below 1.0 !!!
 MOUSE_SCALING=10
 
-TOUCHPAD_STRING=touchpad
+TOUCHPAD_STRING="touchpad"
 #For me, I think 1.5 and 10 are suitable values for the touchpad.
 TOUCHPAD_DECELERATION=1.5 # don't set below 1.0 !!!
 TOUCHPAD_SCALING=10

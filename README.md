@@ -32,6 +32,11 @@ options for start of a "micro-break":
 Option to define when a "micro-break" ends:
 > mouse-speed -r
 
+## Installation
+In case you use another mouse than logitech, adapt the firt few configuration lines: 
+the variables MOUSE_STRING and TOUCHPAD_STRING contain an unambiguous part of the Identifier string you will get if you enter
+> xinput --list --short
+
 
 ## Author
 
