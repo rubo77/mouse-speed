@@ -39,7 +39,7 @@ Option to define when a "micro-break" ends:
 
 + http://coffeeplusplus.z11.de
 
-An ergonomic alternative Keyboardlayout for typing with both hands and optional with only one
+An ergonomic alternative keyboard-layout for typing with both hands and optional with only one (english and german)
 
 
 ## Copyright and license
