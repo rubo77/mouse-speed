@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# source code revision: $Revision:$
+# Version 1.0
 
 #----------- usage examples ---------#
 # decellerate the mouse for 50%:
