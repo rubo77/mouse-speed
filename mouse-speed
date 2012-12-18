@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# usage examples:
+# decellerate the mouse for 50%:
+# mouse-speed -d 50
+# accelerate the mouse for 50%
+# mouse-speed -a 50
+# reset mouse speed to 100%
+# mouse-speed -r 
+# set mouse speed to 30%
+# mouse-speed -s 30
+
+
+
+#file where the current speed is saved:
+CURRENTSPEEDFILE=/tmp/.mouse-coffee.current
+#percent of speed:
+CURRENTSPEED=100
+
+#I use a Logitech usb mouse too.
+#So for a Logitech mouse use this string:
+
+MOUSE_STRING=Logitech
+# 1.2 and 10 are suitable values for the mouse
+MOUSE_DECELERATION=1.2 # don't set below 1.0 !!!
+MOUSE_SCALING=10
+
+TOUCHPAD_STRING=touchpad
+#For me, I think 1.5 and 10 are suitable values for the touchpad.
+TOUCHPAD_DECELERATION=1.5 # don't set below 1.0 !!!
+TOUCHPAD_SCALING=10
+
+store_speed ()
+{
+	echo "Current_Mousespeed: $CURRENTSPEED" >$CURRENTSPEEDFILE
+	echo "# this is the configfile for mouse_coffee-plusplus" >>$CURRENTSPEEDFILE
+}
+
+#store and read configfile:
+if [ -f $CURRENTSPEEDFILE ] ; then
+	CURRENTSPEED=$(cat $CURRENTSPEEDFILE | grep Current_Mousespeed:| cut -d ' ' -f 2 )
+else
+	store_speed
+fi
+
+#decelerate speed if argument -d i set
+while getopts :h:d:a:s:r option
+do
+    case "$option" in
+     h) echo "call this script to set the mouse speed"
+		echo "options are -d decellerate, -a accellerate, -s set, -r reset"
+        ;;
+	 d) echo "Speed decellerated for $OPTARG%"
+		let CURRENTSPEED=$(($CURRENTSPEED * $((100-$OPTARG)) /100))
+        ;;
+     a) echo "Speed accellerated for $OPTARG%"
+		let CURRENTSPEED=$(($CURRENTSPEED * $((100+$OPTARG)) /100))
+        ;;
+     s) echo "Speed set to $OPTARG%"
+		let CURRENTSPEED=$OPTARG
+        ;;
+     r) echo "Speed reset to 100%"
+		let CURRENTSPEED=100
+        ;;
+     \?) echo "Ungültige Option: $OPTARG"
+        ;;
+     :) echo "Fehlendes Argument bei Option $OPTARG"
+        ;;
+    esac
+done
+
+if [[ $CURRENTSPEED -gt 100 ]]; then 
+	echo "SPEED max is 100%"
+	CURRENTSPEED=100
+fi
+
+store_speed
+echo new Speed: $CURRENTSPEED
+
+echo speed set to $CURRENTSPEED%
+
+MOUSE_DECELERATION=$(bc <<< "scale = 1; $MOUSE_DECELERATION * 100 / $CURRENTSPEED")
+echo new mouse deceleration: $MOUSE_DECELERATION; 
+TOUCHPAD_DECELERATION=$(bc <<< "scale = 1; $TOUCHPAD_DECELERATION * 100 / $CURRENTSPEED")
+echo new touchpad deceleration: $TOUCHPAD_DECELERATION; 
+
+        
+#set touchpad
+TP=$(xinput --list --short|grep -i $TOUCHPAD_STRING|cut -f 1 | cut -d" " -f 5-|sed 's/\s\+$//g')
+xinput --set-prop "$TP" "Device Accel Constant Deceleration" $TOUCHPAD_DECELERATION
+xinput --set-prop "$TP" "Device Accel Velocity Scaling" $TOUCHPAD_SCALING
+
+#set mouse
+MOUSE=$(xinput --list --short|grep -i $MOUSE_STRING| cut -f 1|cut -d" " -f 5-|sed 's/\s\+$//g')
+xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
+xinput --set-prop "$MOUSE" "Device Accel Velocity Scaling" $MOUSE_SCALING
+
