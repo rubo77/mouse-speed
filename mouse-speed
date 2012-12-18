@@ -13,11 +13,7 @@
 #installation:
 #In case you use another mouse than logitech, adapt the variables MOUSE_STRING and TOUCHPAD_STRING
 
-#file where the current speed is saved:
-CURRENTSPEEDFILE=/tmp/.mouse-coffee.current
-#percent of speed:
-CURRENTSPEED=100
-
+# ---------- configuration -----------#
 #I use a Logitech usb mouse too.
 #So for a Logitech mouse use this string:
 MOUSE_STRING="Logitech"
@@ -29,6 +25,13 @@ TOUCHPAD_STRING="touchpad"
 #For me, I think 1.5 and 10 are suitable values for the touchpad.
 TOUCHPAD_DECELERATION=1.5 # don't set below 1.0 !!!
 TOUCHPAD_SCALING=10
+
+# -------- end of configuration -------#
+
+#file where the current speed is saved:
+CURRENTSPEEDFILE=/tmp/.mouse-coffee.current
+#percent of speed:
+CURRENTSPEED=100
 
 store_speed ()
 {
