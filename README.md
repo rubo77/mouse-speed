@@ -1,7 +1,6 @@
-mouse-speed
-===========
+#mouse-speed
 
-Bash script to increase or decrease the mouse and touchpas speed
+Bash script to increase or decrease the speed of your mouse and touchpad
 
 ### usage
 decellerate the mouse for 50%:
