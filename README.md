@@ -17,19 +17,18 @@ set mouse speed to 30%
 
 
 ## Implementation in RSIBreak
-In RSIBreak this has a special effect:
-http://packages.ubuntu.com/search?keywords=rsibreak
+In [RSIBreak](https://apps.ubuntu.com/cat/applications/precise/rsibreak/) this is especially useful:
 
 you can set this program, to start, when a microbreak starts 
-and with another option when a micro-break ends.
+and with another option to reset to default speed only when a micro-break successfully ends.
 
-if you disable the "skip" button in RSIBreak, then the only solution for you to continue working 
-is to postpone the break, which does not trigger the event, that only fires, if the microbreak ends.
+if you disable the "skip" button in RSIBreak preferences, then the only solution for you to continue working without taking the break
+would be to postpone the break, which would not trigger the end-event, that only fires, if the microbreak ends.
 
-options for start of a "micro-break":
+options for the start of a "micro-break":
 > mouse-speed -d 50
 
-Option to define when a "micro-break" ends:
+Option to for when a "micro-break" ends:
 > mouse-speed -r
 
 ## Installation
