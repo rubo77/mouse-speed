@@ -1,6 +1,22 @@
 #!/bin/bash
 
-# Version 1.0
+# Version 1.1
+
+# ---------- configuration -----------#
+#For ex. for a Logitech mouse use this string "Logitech":
+MOUSE_STRING="Logitech"
+
+# For ex. 1.2 and 10 are suitable values for the mouse
+MOUSE_DECELERATION=1.2 # don't set below 1.0 !!!
+MOUSE_SCALING=10
+
+# Most touchpads contain the strin "touchpad" (this is case insensitive)
+TOUCHPAD_STRING="touchpad"
+#For ex. 1.8 and 10 are suitable values for the touchpad.
+TOUCHPAD_DECELERATION=1.8 # don't set below 1.0 !!!
+TOUCHPAD_SCALING=10
+
+# -------- end of configuration -------#
 
 #----------- usage examples ---------#
 # decellerate the mouse for 50%:
@@ -18,29 +34,18 @@
 #--------- installation --------------#
 # In case you use another mouse than logitech, adapt the 
 # variables MOUSE_STRING and TOUCHPAD_STRING in the configuration section
+# search for the right string with
+# xinput --list --short
 
 #-------------- Author:  -------------#
-#		Ruben Barkow
+# by Ruben Barkow
 # Website: 	http://coffeeplusplus.z11.de
 # 		An ergonomic alternative keyboard-layout for typing with both hands and optional with only one (english and german)
+# git: 		https://github.com/rubo77/mouse-speed
 
 #--- Copyright and license -----------#
 #This code is covered by the GNU General Public License 3.
 
-# ---------- configuration -----------#
-#I use a Logitech usb mouse too.
-#So for a Logitech mouse use this string:
-MOUSE_STRING="Logitech"
-# 1.2 and 10 are suitable values for the mouse
-MOUSE_DECELERATION=1.2 # don't set below 1.0 !!!
-MOUSE_SCALING=10
-
-TOUCHPAD_STRING="touchpad"
-#For me, I think 1.5 and 10 are suitable values for the touchpad.
-TOUCHPAD_DECELERATION=1.5 # don't set below 1.0 !!!
-TOUCHPAD_SCALING=10
-
-# ------- end of configuration -------#
 
 #file where the current speed is saved:
 CURRENTSPEEDFILE=/tmp/.mouse-coffee.current
@@ -59,13 +64,19 @@ if [ -f $CURRENTSPEEDFILE ] ; then
 else
 	store_speed
 fi
-
+VERBOSE=0
 #decelerate speed if argument -d i set
-while getopts :h:d:a:s:r option
+while getopts :h:d:a:s:r:v option
 do
     case "$option" in
-     h) echo "call this script to set the mouse speed"
-		echo "options are -d decellerate, -a accellerate, -s set, -r reset"
+     h) echo 
+	echo "call this script to set the mouse speed"
+	echo "options are -d decellerate, -a accellerate, -s set, -r reset, -v verbose -help this help"
+	echo
+	echo "Adapt your script to the right Mouse and touchpad devices with the help of the command"
+	echo " xinput --list --short"
+	echo "add the right names for your devices in the configuration section of this script"
+	exit
         ;;
 	 d) echo "Speed decellerated for $OPTARG%"
 		let CURRENTSPEED=$(($CURRENTSPEED * $((100-$OPTARG)) /100))
@@ -79,9 +90,12 @@ do
      r) echo "Speed reset to 100%"
 		let CURRENTSPEED=100
         ;;
-     \?) echo "Ungültige Option: $OPTARG"
+     v) 
+	VERBOSE=1
         ;;
-     :) echo "Fehlendes Argument bei Option $OPTARG"
+     \?) echo "Invalid option: $OPTARG"
+        ;;
+     :) echo "Missing argument at option $OPTARG"
         ;;
     esac
 done
@@ -104,11 +118,30 @@ echo new touchpad deceleration: $TOUCHPAD_DECELERATION;
         
 #set touchpad
 TP=$(xinput --list --short|grep -i $TOUCHPAD_STRING|cut -f 1 | cut -d" " -f 5-|sed 's/\s\+$//g')
+if [ "$TP" ]; then
+	if [ $VERBOSE == 1 ]; then
+		echo setting speed for $TP
+		echo was before:
+		xinput --list-props "$TP"|grep Accel
+	fi
 xinput --set-prop "$TP" "Device Accel Constant Deceleration" $TOUCHPAD_DECELERATION
 xinput --set-prop "$TP" "Device Accel Velocity Scaling" $TOUCHPAD_SCALING
+	if [ $VERBOSE == 1 ]; then
+		echo now set to:
+		xinput --list-props "$TP"|grep Accel
+	fi
+else
+	echo 'Touchpad device "'$TOUCHPAD_STRING'" not found'
+	echo call '"'$0 -help'"' for help
+fi
 
 #set mouse
 MOUSE=$(xinput --list --short|grep -i $MOUSE_STRING| cut -f 1|cut -d" " -f 5-|sed 's/\s\+$//g')
+if [ "$MOUSE" ]; then
+	echo setting speed for $MOUSE
 xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
 xinput --set-prop "$MOUSE" "Device Accel Velocity Scaling" $MOUSE_SCALING
-
+else
+	echo 'Mouse device "'$MOUSE_STRING'" not found'
+	echo call '"'$0 -help'"' for help
+fi
