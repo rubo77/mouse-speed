@@ -1,16 +1,13 @@
 #!/bin/bash
 
-# Version 1.1
+$VERSION="1.2"
 
 # ---------- configuration -----------#
-#For ex. for a Logitech mouse use this string "Logitech":
-MOUSE_STRING="Logitech"
-
 # For ex. 1.2 and 10 are suitable values for the mouse
 MOUSE_DECELERATION=1.2 # don't set below 1.0 !!!
 MOUSE_SCALING=10
 
-# Most touchpads contain the strin "touchpad" (this is case insensitive)
+# Most touchpads contain the string "touchpad" (this is case insensitive)
 TOUCHPAD_STRING="touchpad"
 #For ex. 1.8 and 10 are suitable values for the touchpad.
 TOUCHPAD_DECELERATION=1.8 # don't set below 1.0 !!!
@@ -133,14 +130,17 @@ xinput --set-prop "$TP" "Device Accel Velocity Scaling" $TOUCHPAD_SCALING
 else
 	echo 'Touchpad device "'$TOUCHPAD_STRING'" not found'
 	echo call '"'$0 -help'"' for help
+	echo
 fi
 
 #set mouse
-MOUSE=$(xinput --list --short|grep -i $MOUSE_STRING| cut -f 1|cut -d" " -f 5-|sed 's/\s\+$//g')
+# detect mouse: select all slave pointers that are not the Virtual core pointer and not the touchpad:
+MOUSE=$(xinput --list --short|grep "slave  pointer"|grep -v "Virtual core"|grep -iv "$TOUCHPAD_STRING"| cut -f 1|cut -d" " -f 5-|sed 's/\s\+$//g')
 if [ "$MOUSE" ]; then
-	echo setting speed for $MOUSE
-xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
-xinput --set-prop "$MOUSE" "Device Accel Velocity Scaling" $MOUSE_SCALING
+	echo setting mouse-speed for '"'$MOUSE'"'
+	echo xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
+	xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
+	xinput --set-prop "$MOUSE" "Device Accel Velocity Scaling" $MOUSE_SCALING
 else
 	echo 'Mouse device "'$MOUSE_STRING'" not found'
 	echo call '"'$0 -help'"' for help
