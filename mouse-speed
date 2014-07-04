@@ -23,7 +23,7 @@ MOUSE=$(xinput --list --short | grep "slave  pointer" | egrep -iv "Virtual core|
 #MOUSE="YOUR-MOUSE-IDENTIFIER"
 
 #--------- installation --------------#
-# In case you use a touchpad without the strint "touchpad" in its identifier string adapt the 
+# In case you use a touchpad without the string "touchpad" in it's identifier string adapt the 
 # variable TOUCHPAD_STRING in the configuration section
 # search for the right string with
 # xinput --list --short
@@ -79,26 +79,62 @@ while true; do
   case "$1" in
 
     -h|--help)
-      echo "call this script to set the mouse speed"
-      echo usage $0 -h -r -s -v -V -d -a or $0 --help --reset --set --verbose --version --decelerate --accelerate
       echo "
-      usage examples:
+
+  NAME:
+
+    mouse-speed
+
+  DESCRIPTION:
+
+    this script sets the mouse- and touchpad accelleration speed 
+    to a relative percentage of the previous speed or to a certain absolute percentage
+
+  GLOBAL OPTIONS:
+    
+    Mandatory arguments to long options are mandatory for short options too.
+    
+    -d, --decelerate=PERCENT
+        decellerate for PERCENT of previous value
+    -a, --accelerate=PERCENT
+        accellerate for PERCENT of previous value
+    -s, --set=PERCENT
+        set the speed to PERCENT
+    -r, --reset
+        Reset to 100% (the same as mouse-speed -s 100)
+    -h, --help 
+        Display help documentation
+    -V, --version 
+        Display version information
+    -v, --verbose
+        more verbose output
+    --vv
+        even more verbose (for debugging onny)
+   
+  USAGE EXAMPLES:
       
-        # decellerate the mouse for 50%:
-        mouse-speed -d 50
+    # decellerate the mouse for 50%:
+    mouse-speed -d 50
 
-        # accelerate the mouse for 50%:
-        mouse-speed -a 50
+    # accelerate the mouse for 50%:
+    mouse-speed -a 50
 
-        # reset mouse speed to 100%:
-        mouse-speed -r 
+    # reset mouse speed to 100%:
+    mouse-speed -r 
 
-        # set mouse speed to 30%:
-        mouse-speed -s 30"
-      echo
-      echo "In case your mouse or touchpad are not recognized, adapt this script to the right mouse and touchpad devices with the help of the command:"
-      echo " xinput --list --short"
-      echo "add the right names for your devices in the configuration section of this script"
+    # set mouse speed to 30%:
+    mouse-speed -s 30
+    
+  DEVELOPER INFO
+  
+    In case your mouse or touchpad are not recognized, adapt this script
+    to the right mouse and touchpad devices with the help of the command:
+      xinput --list --short
+    add the right names for your devices in the configuration section of
+    this script
+    
+    This procect on git:        https://github.com/rubo77/mouse-speed
+"
       exit
       shift;;
 
