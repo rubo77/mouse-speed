@@ -7,20 +7,14 @@ echo
 echo '#'cleaning up $TMPFOLDER and recreate it with the needed files
 
 ( set -x
-	rm -Rf $TMPFOLDER/$PACKAGE
-	#create build dir
-	mkdir -p $TMPFOLDER/$PACKAGE/
-	#copy files
-	cp -r DEBIAN $TMPFOLDER/$PACKAGE/
-	cp -r usr $TMPFOLDER/$PACKAGE/
-	#
-	cd $TMPFOLDER
-)
-
-echo
-echo building package ...
-
-( set -x
+rm -Rf $TMPFOLDER/$PACKAGE
+: create build dir...
+mkdir -p $TMPFOLDER/$PACKAGE/
+: copy files...
+cp -r DEBIAN $TMPFOLDER/$PACKAGE/
+cp -r usr $TMPFOLDER/$PACKAGE/
+: building package ...
+cd $TMPFOLDER
 dpkg-deb -z8 -Zgzip --build $TMPFOLDER/$PACKAGE
 ls -lah $TMPFOLDER
 )
