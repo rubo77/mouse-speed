@@ -7,3 +7,4 @@ Architecture: i386
 Version: 1.3
 Depends: xserver-xorg (>= 0.1), bc (>= 0.1)
 Description: Bash script to increase or decrease the speed of your mouse and touchpad
+Homepage: https://github.com/rubo77/mouse-speed
