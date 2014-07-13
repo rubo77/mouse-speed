@@ -1,0 +1,15 @@
+Source: mouse-speed
+Section: unknown
+Priority: optional
+Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.4
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/mouse-speed.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/mouse-speed.git;a=summary
+
+Package: mouse-speed
+Architecture: all
+Depends: ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>

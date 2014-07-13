@@ -33,8 +33,6 @@ SOURCEBIN=mouse-speed
 DEBFOLDER=release/PPA/mouse-speed
 DEBVERSION=1.3
 
-DEBFOLDERNAME=$DEBFOLDER-$DEBVERSION
-
 if [ ! -d "$SOURCEBINPATH" ]; then
   echo $SOURCEBINPATH not in current dir `pwd`
   echo this script has to be called in the main repository path
@@ -44,17 +42,17 @@ fi
 ( set -x
 
 # cleaning up  and recreate it with the needed files
-#rm -Rf release/PPA/mouse-speed*
+rm -Rf release/PPA/mouse-speed*
 
 # Create your scripts source dir
-mkdir -p $DEBFOLDERNAME
+mkdir -p $DEBFOLDER
 
 # Copy your script to the source dir
-cp $SOURCEBINPATH/$SOURCEBIN $DEBFOLDERNAME 
-cd $DEBFOLDERNAME
+cp $SOURCEBINPATH/$SOURCEBIN $DEBFOLDER 
+cd $DEBFOLDER
 
 # Create the packaging skeleton (debian/*)
-dh_make -s --indep --createorig 
+dh_make -s --indep --createorig -p "$SOURCEBIN"_$DEBVERSION
 
 # Remove make calls
 grep -v makefile debian/rules > debian/rules.new 
@@ -68,7 +66,7 @@ echo $SOURCEBIN usr/bin > debian/install
 echo "1.0" > debian/source/format 
 
 # Remove the example files
-rm debian/*.ex
+rm debian/*.ex debian/*.EX
 
 # Build the package.
 # You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
@@ -81,5 +79,5 @@ echo sudo dpkg -i "$DEBFOLDER"_$DEBVERSION-1_all.deb
 # Apart renaming the directory and updating debian/changelog you must 
 # create the .orig archive corresponding to the new version, 
 # this is an archive form the source directory contents (without including debian/)
-# cp $DEBFOLDERNAME $DEBFOLDERNAME.orig && rm -rf $DEBFOLDERNAME.orig/debian && tar czvf "$SOURCEBIN"_$DEBVERSION.orig.tar.gz $DEBFOLDERNAME.orig
+# cp $DEBFOLDER $DEBFOLDER.orig && rm -rf $DEBFOLDER.orig/debian && tar czvf "$SOURCEBIN"_$DEBVERSION.orig.tar.gz $DEBFOLDER.orig
 
