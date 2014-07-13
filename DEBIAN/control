@@ -1,10 +1,12 @@
-Package: mouse-speed
-Priority: optional
 Section: x11
+Priority: optional
 Installed-Size: 7062
-Maintainer: Ruben Barkow 
-Architecture: i386 
+Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
 Version: 1.3
+Homepage: https://github.com/rubo77/mouse-speed
+
+Package: mouse-speed
+Architecture: all 
 Depends: xserver-xorg (>= 0.1), bc (>= 0.1)
 Description: Bash script to increase or decrease the speed of your mouse and touchpad
-Homepage: https://github.com/rubo77/mouse-speed
+
