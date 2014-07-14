@@ -48,7 +48,7 @@ fi
 mkdir -p "$DEBFOLDER"-$DEBVERSION
 
 # Copy your script to the source dir
-cp $SOURCEBINPATH/$SOURCEBIN $DEBFOLDER 
+cp $SOURCEBINPATH/$SOURCEBIN "$DEBFOLDER"-$DEBVERSION 
 cd "$DEBFOLDER"-$DEBVERSION
 
 # Create the packaging skeleton (debian/*)
