@@ -58,6 +58,7 @@ else
 	echo "Initiate mouse-speed"
 	echo "create state file in $CURRENTSPEEDFILE"
 	store_speed
+	chmod 777 $CURRENTSPEEDFILE
 fi
 VERBOSE=false
 

@@ -45,20 +45,13 @@ Now running lintian...
 E: mouse-speed changes: bad-distribution-in-changes-file unstable
 W: mouse-speed source: native-package-with-dash-version
 W: mouse-speed source: package-needs-versioned-debhelper-build-depends 9
-W: mouse-speed source: superfluous-clutter-in-homepage <insert the upstream URL, if relevant>
-W: mouse-speed source: bad-homepage <insert the upstream URL, if relevant>
 W: mouse-speed source: out-of-date-standards-version 3.9.4 (current is 3.9.5)
 W: mouse-speed: wrong-bug-number-in-closes l3:#nnnn
 W: mouse-speed: new-package-should-close-itp-bug
 E: mouse-speed: changelog-is-dh_make-template
-E: mouse-speed: helper-templates-in-copyright
-W: mouse-speed: copyright-has-url-from-dh_make-boilerplate
 E: mouse-speed: copyright-contains-dh_make-todo-boilerplate
 W: mouse-speed: readme-debian-contains-debmake-template
-E: mouse-speed: description-is-dh_make-template
-E: mouse-speed: section-is-dh_make-template
-W: mouse-speed: superfluous-clutter-in-homepage <insert the upstream URL, if relevant>
-W: mouse-speed: bad-homepage <insert the upstream URL, if relevant>
+E: mouse-speed: extended-description-is-empty
 W: mouse-speed: binary-without-manpage usr/bin/mouse-speed
 Finished running lintian.
 
