@@ -45,14 +45,15 @@ fi
 #rm -Rf release/PPA/mouse-speed*
 
 # Create your scripts source dir
-mkdir -p $DEBFOLDER
+mkdir -p "$DEBFOLDER"-$DEBVERSION
 
 # Copy your script to the source dir
 cp $SOURCEBINPATH/$SOURCEBIN $DEBFOLDER 
-cd $DEBFOLDER
+cd "$DEBFOLDER"-$DEBVERSION
 
 # Create the packaging skeleton (debian/*)
-dh_make -s --indep --createorig -p "$SOURCEBIN"_$DEBVERSION
+dh_make -s --indep --createorig
+# doesn't work with -p "$SOURCEBIN"_$DEBVERSION
 
 # Remove make calls
 grep -v makefile debian/rules > debian/rules.new 
@@ -73,7 +74,7 @@ debuild -us -uc
 )
 # You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
 echo install with:
-echo sudo dpkg -i "$DEBFOLDER"_$DEBVERSION-1_all.deb
+echo sudo dpkg -i "$DEBFOLDER"-$DEBVERSION-1_all.deb
 
 # Updating
 # Apart renaming the directory and updating debian/changelog you must 
