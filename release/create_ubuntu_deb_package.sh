@@ -74,7 +74,7 @@ debuild -us -uc
 )
 # You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
 echo install with:
-echo sudo dpkg -i "$DEBFOLDER"-$DEBVERSION-1_all.deb
+echo sudo dpkg -i "$DEBFOLDER"_$DEBVERSION-1_all.deb
 
 # Updating
 # Apart renaming the directory and updating debian/changelog you must 
