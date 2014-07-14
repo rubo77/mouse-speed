@@ -31,7 +31,7 @@
 SOURCEBINPATH=usr/bin
 SOURCEBIN=mouse-speed
 DEBFOLDER=release/PPA/mouse-speed
-DEBVERSION=1.3
+DEBVERSION=1.4
 
 if [ ! -d "$SOURCEBINPATH" ]; then
   echo $SOURCEBINPATH not in current dir `pwd`
