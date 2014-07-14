@@ -1,0 +1,28 @@
+Format: 1.8
+Date: Mon, 14 Jul 2014 19:15:42 +0200
+Source: mouse-speed
+Binary: mouse-speed
+Architecture: source all
+Version: 1.3-1
+Distribution: unstable
+Urgency: low
+Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
+Changed-By: Ruben Barkow <ubuntu@spacetrace.org>
+Description: 
+ mouse-speed - Bash script to increase or decrease the speed of your mouse and t
+Changes: 
+ mouse-speed (1.3-1) unstable; urgency=low
+ .
+   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+Checksums-Sha1: 
+ 6ac3e15f6df1e98d25ed501c742d1d610982cea9 564 mouse-speed_1.3-1.dsc
+ 9afa6d8eb23b39bb45f56794429f3c78f9679a5f 4003 mouse-speed_1.3-1.tar.gz
+ 7d7bb945662f7fdfc326af9573ab4463f9851932 4238 mouse-speed_1.3-1_all.deb
+Checksums-Sha256: 
+ 8aef6662adc1d9c634f74181749617ced9e0f2401f85d04da4f02fdd3fa23041 564 mouse-speed_1.3-1.dsc
+ f91e032b3bea393f26fbdbbecf2fdb0f2ddee184843ffa5a1fc78a0a3d727671 4003 mouse-speed_1.3-1.tar.gz
+ c12139e00b9ca1f01ed610731030c7b08aa6a42b5e7100b0d57f1bbaecf12dc4 4238 mouse-speed_1.3-1_all.deb
+Files: 
+ 3c1895aed4f1e5d666077232e0f2240f 564 x11 optional mouse-speed_1.3-1.dsc
+ 3e8a1600e5005b21f6d5756f50db35d4 4003 x11 optional mouse-speed_1.3-1.tar.gz
+ 29f6c52ea79bc1571d192b5722149c0f 4238 x11 optional mouse-speed_1.3-1_all.deb
