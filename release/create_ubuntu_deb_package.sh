@@ -73,6 +73,7 @@ rm debian/*.ex debian/*.EX
 debuild -us -uc
 
 # creates the Packages.gz, containing all the needed informationen about your deb-packages
+cd ../
 dpkg-scanpackages . /dev/null |gzip > Packages.gz
 )
 # You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
