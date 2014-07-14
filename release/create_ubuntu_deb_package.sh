@@ -41,8 +41,8 @@ fi
 
 ( set -x
 
-# cleaning up  and recreate it with the needed files
-rm -Rf release/PPA/mouse-speed*
+# cleaning up and recreate it with the needed files
+#rm -Rf release/PPA/mouse-speed*
 
 # Create your scripts source dir
 mkdir -p $DEBFOLDER
@@ -69,9 +69,9 @@ echo "1.0" > debian/source/format
 rm debian/*.ex debian/*.EX
 
 # Build the package.
-# You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
-#debuild -us -uc
+debuild -us -uc
 )
+# You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
 echo install with:
 echo sudo dpkg -i "$DEBFOLDER"_$DEBVERSION-1_all.deb
 
