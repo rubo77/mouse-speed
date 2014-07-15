@@ -9,7 +9,7 @@ SOURCEBINPATH=usr/bin
 SOURCEBIN=mouse-speed
 DEBFOLDER=release/PPA/mouse-speed
 DEBIANDEFAULTS=../debian;
-DEBVERSION=1.5
+DEBVERSION=1.6
 
 if [ ! -d "$SOURCEBINPATH" ]; then
   echo $SOURCEBINPATH not in current dir `pwd`
@@ -49,7 +49,11 @@ echo $SOURCEBIN usr/bin > debian/install
 echo "1.0" > debian/source/format 
 
 # Remove the example files
-rm debian/*.ex debian/*.EX
+rm debian/*.ex debian/*.EX debian/README.*
+
+# set distribution and fix template in changelog:
+sed -i 's/unstable/trusty/' debian/changelog
+sed -i 's/Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>/fixed package generation for Launchpad/'
 
 # Build the package.
 #debuild -us -uc -k'Ruben Barkow (launchpad) <ubuntu@spacetrace.org>'

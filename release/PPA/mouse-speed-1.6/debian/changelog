@@ -1,0 +1,5 @@
+mouse-speed (1.6-1) trusty; urgency=low
+
+  * fixed package generation for Launchpad
+
+ -- Ruben Barkow <ubuntu@spacetrace.org>  Tue, 15 Jul 2014 02:44:21 +0200
