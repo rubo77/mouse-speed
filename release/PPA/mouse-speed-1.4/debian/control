@@ -3,7 +3,7 @@ Section: x11
 Priority: optional
 Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
 Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Homepage: https://github.com/rubo77/mouse-speed
 #Vcs-Git: git://git.debian.org/collab-maint/mouse-speed.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/mouse-speed.git;a=summary
@@ -12,4 +12,14 @@ Package: mouse-speed
 Architecture: all
 Depends: ${misc:Depends}
 Description: Bash script to increase or decrease the speed of your mouse and touchpad
+ This script can be used to control the mouse-speed from the commandline.
+ For example this is especially useful in RSIBreak:
+ https://apps.ubuntu.com/cat/applications/precise/rsibreak/
+ you can set this program, to start, when a microbreak starts 
+ and with another option to reset to default speed only when a micro-break
+ successfully ends.
+ If you disable the "skip" button in RSIBreak preferences, then the only
+ solution for you to continue working without taking the break would be to
+ postpone the break, which would not trigger the end-event, that only fires,
+ if the microbreak ends.
 

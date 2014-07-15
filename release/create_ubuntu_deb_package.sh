@@ -9,7 +9,7 @@ SOURCEBINPATH=usr/bin
 SOURCEBIN=mouse-speed
 DEBFOLDER=release/PPA/mouse-speed
 DEBIANDEFAULTS=../debian;
-DEBVERSION=1.4
+DEBVERSION=1.5
 
 if [ ! -d "$SOURCEBINPATH" ]; then
   echo $SOURCEBINPATH not in current dir `pwd`
@@ -52,7 +52,7 @@ echo "1.0" > debian/source/format
 rm debian/*.ex debian/*.EX
 
 # Build the package.
-debuild -us -uc
+debuild -us -uc -k'Ruben Barkow (launchpad) <ubuntu@spacetrace.org>'
 
 # creates the Packages.gz, containing all the needed informationen about your deb-packages
 cd ../

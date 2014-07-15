@@ -1,5 +1,5 @@
-mouse-speed (1.4-1) unstable; urgency=low
+mouse-speed (1.4-1) trusty; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
 
  -- Ruben Barkow <ubuntu@spacetrace.org>  Mon, 14 Jul 2014 21:33:48 +0200

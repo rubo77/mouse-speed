@@ -5,13 +5,13 @@ Architecture: all
 Version: 1.4-1
 Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
 Homepage: https://github.com/rubo77/mouse-speed
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Build-Depends: debhelper (>= 8.0.0)
 Package-List: 
  mouse-speed deb x11 optional
 Checksums-Sha1: 
- d3712e545c1e170867fbc49184d90abf8bc677c0 4271 mouse-speed_1.4-1.tar.gz
+ 570d45a0f373f9d4cc6b9c9aa88901b001e2ae9d 4208 mouse-speed_1.4-1.tar.gz
 Checksums-Sha256: 
- b4df53e93b2b0fe1aa2f2bb8b31d777003de962041f79fd9acd87dea9cd34664 4271 mouse-speed_1.4-1.tar.gz
+ d46eae585374e203413637817e8042ea67af00c252ce3659ccdb9aea7c09a5df 4208 mouse-speed_1.4-1.tar.gz
 Files: 
- 9f5ee620e16d8096cd0cf512b834ea81 4271 mouse-speed_1.4-1.tar.gz
+ 0963fe235b04305591b1aa66ad0372f4 4208 mouse-speed_1.4-1.tar.gz

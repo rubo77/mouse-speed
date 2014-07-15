@@ -4,25 +4,25 @@ Source: mouse-speed
 Binary: mouse-speed
 Architecture: source all
 Version: 1.4-1
-Distribution: unstable
+Distribution: trusty
 Urgency: low
 Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
 Changed-By: Ruben Barkow <ubuntu@spacetrace.org>
 Description: 
  mouse-speed - Bash script to increase or decrease the speed of your mouse and t
 Changes: 
- mouse-speed (1.4-1) unstable; urgency=low
+ mouse-speed (1.4-1) trusty; urgency=low
  .
-   * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+   * Initial release
 Checksums-Sha1: 
- 17d9a6cae3d3ddb45526e1f11e849c46015f00bf 564 mouse-speed_1.4-1.dsc
- d3712e545c1e170867fbc49184d90abf8bc677c0 4271 mouse-speed_1.4-1.tar.gz
- 25e5f007ed9087d2a974572df3b9cf2ffab0ef3f 4392 mouse-speed_1.4-1_all.deb
+ 5994986d5b56ed4be3f4cc8d83651f70d7ba6a6f 564 mouse-speed_1.4-1.dsc
+ 570d45a0f373f9d4cc6b9c9aa88901b001e2ae9d 4208 mouse-speed_1.4-1.tar.gz
+ 6ab2342bfda985c24d4c2e40c0177a78f9d03438 4396 mouse-speed_1.4-1_all.deb
 Checksums-Sha256: 
- 1d3fa5ca29833c8fb574e300eda605980d58276c8fe90e2d50ed2ffebfd271d5 564 mouse-speed_1.4-1.dsc
- b4df53e93b2b0fe1aa2f2bb8b31d777003de962041f79fd9acd87dea9cd34664 4271 mouse-speed_1.4-1.tar.gz
- 5b96da0d0e4da9f456feb87441cb616b0b8782943e89b56daa04a6ee0caaf486 4392 mouse-speed_1.4-1_all.deb
+ bcca0de9d48d75e0101189935fd49ad0112b81e2082d167e3fe35a6d2ceb5756 564 mouse-speed_1.4-1.dsc
+ d46eae585374e203413637817e8042ea67af00c252ce3659ccdb9aea7c09a5df 4208 mouse-speed_1.4-1.tar.gz
+ 640c4dc1b940aadffb85af558740d9e9f85903b1e36a362a748d600853632d91 4396 mouse-speed_1.4-1_all.deb
 Files: 
- 9d1b5a316a9432c8bb35601bccfd0cf8 564 x11 optional mouse-speed_1.4-1.dsc
- 9f5ee620e16d8096cd0cf512b834ea81 4271 x11 optional mouse-speed_1.4-1.tar.gz
- b9bf347323a6d57a38c86185830fd94f 4392 x11 optional mouse-speed_1.4-1_all.deb
+ afc4a3aab4b0cf31657aa5723df9c42e 564 x11 optional mouse-speed_1.4-1.dsc
+ 0963fe235b04305591b1aa66ad0372f4 4208 x11 optional mouse-speed_1.4-1.tar.gz
+ 57ea211770adf07571a438576a26b060 4396 x11 optional mouse-speed_1.4-1_all.deb
