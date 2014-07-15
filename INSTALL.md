@@ -1,11 +1,19 @@
-Install the debian package from the release folder with
+There are three ways to install mouse-speed on your system:
 
-    dpkg -i release/mouse-speed.deb
+1. On Ubuntu add the PPA-file to your sources:
 
-Or copy the PPA-file
+    sudo add-apt-repository ppa:rubo77/ppa-mouse-speed
+    sudo apt-get update
+    sudo apt-get install mouse-speed
+
+2. On Debian:
 
     sudo cp release/mouse-speed.list /etc/apt/sources.list.d/
     sudo apt-get update
     sudo apt-get install mouse-speed
+    
+3. Install the debian package from the release folder with
 
-this will install the mouse-speed script in `/usr/bin`
+    dpkg -i release/mouse-speed.deb
+    
+Either of this will install the mouse-speed script in `/usr/bin`
