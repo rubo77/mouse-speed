@@ -1,0 +1,254 @@
+#!/bin/bash
+
+VERSION="1.4"
+
+# ---------- configuration -----------#
+# For ex. 1.2 and 10 are suitable values for the mouse
+MOUSE_DECELERATION=1.2 # don't set below 1.0 !!!
+MOUSE_SCALING=10
+
+# Most touchpads contain the string "touchpad" (this is case insensitive)
+TOUCHPAD_STRING="touchpad"
+#For ex. 3.0 and 10 are suitable values for the touchpad.
+TOUCHPAD_DECELERATION=3.0 # don't set below 1.0 !!!
+TOUCHPAD_SCALING=10
+
+# -------- end of configuration -------#
+
+# -------- auto-detect mouse -------#
+# select all slave pointers that are not the Virtual core pointer, 
+# nor a touchscreen, nor the touchpad:
+MOUSE=$(xinput --list --short | grep "slave  pointer" | egrep -iv "Virtual core|touchscreen" | grep -v "Virtual core" | grep -iv "$TOUCHPAD_STRING" | cut -f 1 | cut -d" " -f 5- | sed 's/\s\+$//g')
+#edit this section if needed:
+#MOUSE="YOUR-MOUSE-IDENTIFIER"
+
+#--------- installation --------------#
+# In case you use a touchpad without the string "touchpad" in it's identifier string adapt the 
+# variable TOUCHPAD_STRING in the configuration section
+# search for the right string with
+# xinput --list --short
+
+#-------------- Author:  -------------#
+# by Ruben Barkow
+# Website: 	http://coffeeplusplus.z11.de
+# 		An ergonomic alternative keyboard-layout for typing with both hands and optional with only one (english and german)
+# git: 		https://github.com/rubo77/mouse-speed
+
+#--- Copyright and license -----------#
+#This code is covered by the GNU General Public License 3.
+
+
+# state-file where the current speed is saved:
+CURRENTSPEEDFILE=/tmp/.mouse-speed.state
+# initial percent of speed:
+CURRENTSPEED=100
+
+#############
+
+store_speed ()
+{
+	echo "CurrenSpeed: $CURRENTSPEED" >$CURRENTSPEEDFILE
+	echo "# this is the current speed-state for mouse-speed" >>$CURRENTSPEEDFILE
+}
+
+#store and read configfile:
+if [ -f $CURRENTSPEEDFILE ] ; then
+	CURRENTSPEED=$(cat $CURRENTSPEEDFILE | grep CurrenSpeed:| cut -d ' ' -f 2 )
+else
+	echo "Initiate mouse-speed"
+	echo "create state file in $CURRENTSPEEDFILE"
+	store_speed
+	chmod 777 $CURRENTSPEEDFILE
+fi
+VERBOSE=false
+
+# Execute getopt on the arguments passed to this program, identified by the special character $@
+PARSED_OPTIONS=$(getopt -n "$0"  -o hrs:vVd:a: --long "help,reset,set:,verbose,vv,version,decelerate:,accelerate:"  -- "$@")
+
+#Bad arguments, something has gone wrong with the getopt command.
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
+# A little magic, necessary when using getopt.
+eval set -- "$PARSED_OPTIONS"
+
+# Now go through all options with a case and using shift to analyse one argument at a time.
+# $1 identifies the first argument, and when we use shift we discard the first argument, 
+# so $2 becomes $1 and goes again through the case.
+while true; do
+  case "$1" in
+
+    -h|--help)
+      echo "
+
+  NAME:
+
+    mouse-speed
+
+  DESCRIPTION:
+
+    this script sets the mouse- and touchpad accelleration speed 
+    to a relative percentage of the previous speed or to a certain absolute percentage
+
+  GLOBAL OPTIONS:
+    
+    Mandatory arguments to long options are mandatory for short options too.
+    
+    -d, --decelerate=PERCENT
+        decellerate for PERCENT of previous value
+    -a, --accelerate=PERCENT
+        accellerate for PERCENT of previous value
+    -s, --set=PERCENT
+        set the speed to PERCENT
+    -r, --reset
+        Reset to 100% (the same as mouse-speed -s 100)
+    -h, --help 
+        Display help documentation
+    -V, --version 
+        Display version information
+    -v, --verbose
+        more verbose output
+    --vv
+        even more verbose (for debugging onny)
+   
+  USAGE EXAMPLES:
+      
+    # decellerate the mouse for 50%:
+    mouse-speed -d 50
+
+    # accelerate the mouse for 50%:
+    mouse-speed -a 50
+
+    # reset mouse speed to 100%:
+    mouse-speed -r 
+
+    # set mouse speed to 30%:
+    mouse-speed -s 30
+    
+  DEVELOPER INFO
+  
+    In case your mouse or touchpad are not recognized, adapt this script
+    to the right mouse and touchpad devices with the help of the command:
+      xinput --list --short
+    add the right names for your devices in the configuration section of
+    this script
+    
+    This procect on git:        https://github.com/rubo77/mouse-speed
+"
+      exit
+      shift;;
+
+    -V|--version)
+      echo "mouse-speed $VERSION"
+      exit 
+      shift;;
+    
+    -r|--reset)
+      echo "Speed reset to 100%"
+      let CURRENTSPEED=100
+      shift;;
+
+    -d|--decelerate)
+      #decelerate speed if argument -d i set
+      if [ -n "$2" ]; then
+        echo "Speed decellerated for $2"
+        let CURRENTSPEED=$(($CURRENTSPEED * $((100-$2)) /100))
+      fi
+      shift 2;;
+
+    -a|--accelerate)
+      if [ -n "$2" ]; then
+        echo "Speed accellerated for $2"
+        let CURRENTSPEED=$(($CURRENTSPEED * $((100+$2)) /100))
+        if [ $CURRENTSPEED -lt 3 ]; then
+          CURRENTSPEED=$(($CURRENTSPEED+1))
+        fi
+      fi
+      shift 2;;
+
+    -s|--set)
+      if [ -n "$2" ]; then
+        echo "Speed set to $2%"
+        let CURRENTSPEED=$2
+      else
+        echo "Missing argument at option $2"
+      fi
+      shift 2;;
+
+    -v|--verbose)
+      VERBOSE=true
+      # for the verbose output:
+      PS4="executing: "
+      shift;;
+
+    --vv)
+      # very verbose for debugging
+      VERBOSE=true
+      set -x
+      shift;;
+
+    --)
+      shift
+      break;;
+  esac
+done
+
+
+if [[ $CURRENTSPEED -gt 100 ]]; then 
+    echo "SPEED max is 100%"
+    CURRENTSPEED=100
+fi
+if [[ $CURRENTSPEED -lt 1 ]]; then 
+    echo "SPEED min is 1%"
+    CURRENTSPEED=1
+fi
+
+store_speed
+echo new Speed: $CURRENTSPEED
+
+MOUSE_DECELERATION=$(bc <<< "scale = 1; $MOUSE_DECELERATION * 100 / $CURRENTSPEED")
+echo new mouse deceleration: $MOUSE_DECELERATION; 
+TOUCHPAD_DECELERATION=$(bc <<< "scale = 1; $TOUCHPAD_DECELERATION * 100 / $CURRENTSPEED")
+echo new touchpad deceleration: $TOUCHPAD_DECELERATION; 
+        
+#set touchpad
+TP=$(xinput --list --short | grep -i $TOUCHPAD_STRING | cut -f 1 | cut -d" " -f 5- | sed 's/\s\+$//g')
+if [ "$TP" ]; then
+  if [ $VERBOSE == true ]; then
+    echo setting speed for $TP
+    echo was before:
+    xinput --list-props "$TP"|grep Accel
+  fi
+  ( $VERBOSE && set -x
+  xinput --set-prop "$TP" "Device Accel Constant Deceleration" $TOUCHPAD_DECELERATION
+  xinput --set-prop "$TP" "Device Accel Velocity Scaling" $TOUCHPAD_SCALING
+  )
+  if [ $VERBOSE == true ]; then
+    echo touchpad now set to:
+    xinput --list-props "$TP"|grep Accel
+  fi
+elif [ $VERBOSE == true ]; then
+  echo 'Touchpad device "'$TOUCHPAD_STRING'" not in xinput --list'
+  echo call '"'$0 -help'"' for help
+  echo
+fi
+
+#set mouse
+if [ "$MOUSE" ]; then
+  echo setting mouse-speed for '"'$MOUSE'"'
+  ( $VERBOSE && set -x
+  xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
+  xinput --set-prop "$MOUSE" "Device Accel Velocity Scaling" $MOUSE_SCALING
+  )
+  if [ $VERBOSE == true ]; then
+    echo mouse now set to:
+    xinput --list-props "$MOUSE"|grep Accel
+  fi
+elif [ $VERBOSE == true ]; then
+  echo 'Mouse device not found in xinput --list'
+  echo "If you have a mouse installed that wasn't found,"
+  echo "call "'"'$0 --help'"'" for help"
+fi
+
+exit 0

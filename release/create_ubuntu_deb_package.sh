@@ -52,7 +52,8 @@ echo "1.0" > debian/source/format
 rm debian/*.ex debian/*.EX
 
 # Build the package.
-debuild -us -uc -k'Ruben Barkow (launchpad) <ubuntu@spacetrace.org>'
+#debuild -us -uc -k'Ruben Barkow (launchpad) <ubuntu@spacetrace.org>'
+debuild -k'Ruben Barkow (launchpad) <ubuntu@spacetrace.org>' -S
 
 # creates the Packages.gz, containing all the needed informationen about your deb-packages
 cd ../
@@ -61,6 +62,8 @@ dpkg-scanpackages . /dev/null |gzip > Packages.gz
 # You  will get a lot of warnings and ../somescripts_0.1-1_i386.deb
 echo install with:
 echo sudo dpkg -i "$DEBFOLDER"_$DEBVERSION-1_all.deb
+echo upload with:
+echo LANG=c dput ppa:rubo77/ppa-mouse-speed ./$SOURCEBIN_$DEBVERSION-1_i386.changes
 
 # Updating
 # Apart renaming the directory and updating debian/changelog you must 

@@ -1,0 +1,56 @@
+ dpkg-buildpackage -rfakeroot -D -us -uc
+dpkg-buildpackage: Quellpaket mouse-speed
+dpkg-buildpackage: Quellversion 1.5-1
+dpkg-buildpackage: Quelldistribution trusty
+dpkg-buildpackage: Quellen geändert durch Ruben Barkow <ubuntu@spacetrace.org>
+ dpkg-source --before-build mouse-speed-1.5
+dpkg-buildpackage: Host-Architektur i386
+ fakeroot debian/rules clean
+dh clean 
+   dh_testdir
+   dh_auto_clean
+   dh_clean
+ dpkg-source -b mouse-speed-1.5
+dpkg-source: Information: Quellformat »1.0« wird verwendet
+dpkg-source: Information: mouse-speed wird in mouse-speed_1.5-1.tar.gz gebaut
+dpkg-source: Information: mouse-speed wird in mouse-speed_1.5-1.dsc gebaut
+ debian/rules build
+dh build 
+   dh_testdir
+   dh_auto_configure
+   dh_auto_build
+   dh_auto_test
+ fakeroot debian/rules binary
+dh binary 
+   dh_testroot
+   dh_prep
+   dh_auto_install
+   dh_install
+   dh_installdocs
+   dh_installchangelogs
+   dh_perl
+   dh_link
+   dh_compress
+   dh_fixperms
+   dh_installdeb
+   dh_gencontrol
+   dh_md5sums
+   dh_builddeb
+dpkg-deb: Paket »mouse-speed« wird in »../mouse-speed_1.5-1_all.deb« gebaut.
+ dpkg-genchanges  >../mouse-speed_1.5-1_i386.changes
+dpkg-genchanges: kompletter Quellcode beim Hochladen hinzufügen
+ dpkg-source --after-build mouse-speed-1.5
+dpkg-buildpackage: Alles hochzuladen; Debian-native-Paket (komplette Quellen enthalten)
+Now running lintian...
+W: mouse-speed source: native-package-with-dash-version
+W: mouse-speed source: package-needs-versioned-debhelper-build-depends 9
+W: mouse-speed: new-package-should-close-itp-bug
+W: mouse-speed: readme-debian-contains-debmake-template
+W: mouse-speed: binary-without-manpage usr/bin/mouse-speed
+Finished running lintian.
+Now signing changes and any dsc files...
+ signfile mouse-speed_1.5-1.dsc Ruben Barkow (launchpad) <ubuntu@spacetrace.org>
+
+ signfile mouse-speed_1.5-1_i386.changes Ruben Barkow (launchpad) <ubuntu@spacetrace.org>
+
+Successfully signed dsc and changes files

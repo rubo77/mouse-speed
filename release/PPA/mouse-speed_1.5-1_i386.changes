@@ -1,0 +1,49 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.8
+Date: Tue, 15 Jul 2014 02:26:59 +0200
+Source: mouse-speed
+Binary: mouse-speed
+Architecture: source all
+Version: 1.5-1
+Distribution: trusty
+Urgency: low
+Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
+Changed-By: Ruben Barkow <ubuntu@spacetrace.org>
+Description: 
+ mouse-speed - Bash script to increase or decrease the speed of your mouse and t
+Changes: 
+ mouse-speed (1.5-1) trusty; urgency=low
+ .
+   * Some fixes
+Checksums-Sha1: 
+ a3a21e608fafa14f0e7f1e8389afbf2f738b1e54 1423 mouse-speed_1.5-1.dsc
+ adcd3c6b2eee3c4447970ffd17eae4baff57a105 4374 mouse-speed_1.5-1.tar.gz
+ 26ff07b7d34b4410954e85d97bbe8209319f44bb 4526 mouse-speed_1.5-1_all.deb
+Checksums-Sha256: 
+ 1faa16d646c1f9f313b7b5a0849e699efca02ceb7a742b1fa3d3dfa34059ef12 1423 mouse-speed_1.5-1.dsc
+ c6f016c891bcb23b7a17b7f223bf2d35c79550d207253c99ea943ed07cd0211a 4374 mouse-speed_1.5-1.tar.gz
+ b0c8bf342662d0408354a66b31d0aeb548301d90bb333a9cfedfe407b8124e32 4526 mouse-speed_1.5-1_all.deb
+Files: 
+ 12b7df4c85825ff8050debe1a7ffa27c 1423 x11 optional mouse-speed_1.5-1.dsc
+ a85d736d2342b66368468017ff50767f 4374 x11 optional mouse-speed_1.5-1.tar.gz
+ a72bce0d701df8a7a25b9c4606488829 4526 x11 optional mouse-speed_1.5-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIUBAEBAgAGBQJTxHb2AAoJEJU0Ntb9bvisjZYPv1k4Ny8BIXMISe8nrZTmqXE9
+Z6jOY4z8vBAlNilKFPAVzd9UzYk/moRZDEQzyOSThPKDjAzzyKSYWHDr7zZAZnnj
+LeBKlVzQxwemcL/o/SKUkHeex/3xfmCennvdLGVb+2g5FFDhR93BOPw/zyc5qS5/
+m9biqkJTjo8AcVre4casLjaK1hLws0pdCKMzMRpIb/x7JFVxuxM4wim06zxp/rrj
+yz573snzYLxEx9fRxHfUYt5rMMbJwHSM5jnmxWR1xJlhea0h+N3uUXJgX9gGmMe5
+13ZY2otPJBtzi2uocvILwsRpLOpUYn6gPiEgVChtMSzHnJ0a+2BMoks6+RDSnor0
+QMtmTtUxPHy1KH0+bcvgr7j32JKrfqKd9b/NV5L+MXGgqPh7wN9spNqEuIoP3q9J
+jJuLhOYdg+oiribEXk8UV7WlZpHUreDXBuLTRWe8A3UcMn42/Gsfk/DGSVP1fX50
+3gHA22UDlCBUssiMl1CZnz/QdpPXgp4YgPLr/d1BoIRBDApcjgblrLNrpok1J7gW
+tBP6BiETAhYMZBdehA1R0E7kPvD9gux+CHZPzjkBJ3OhMQxc29CgCXTuO5OnYSs0
+cPRPdfwy5fWFOHy1eDgWksyCFNerSIkacA9QOWCIvqflFT7XLYRIZ50DOGsqPDFj
+m4/KDNc88w==
+=iIAu
+-----END PGP SIGNATURE-----

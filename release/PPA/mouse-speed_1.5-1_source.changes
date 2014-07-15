@@ -1,0 +1,46 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.8
+Date: Tue, 15 Jul 2014 02:26:59 +0200
+Source: mouse-speed
+Binary: mouse-speed
+Architecture: source
+Version: 1.5-1
+Distribution: trusty
+Urgency: low
+Maintainer: Ruben Barkow <ubuntu@spacetrace.org>
+Changed-By: Ruben Barkow <ubuntu@spacetrace.org>
+Description: 
+ mouse-speed - Bash script to increase or decrease the speed of your mouse and t
+Changes: 
+ mouse-speed (1.5-1) trusty; urgency=low
+ .
+   * Some fixes
+Checksums-Sha1: 
+ 6d9e3ebed1d3e2192ea1e83eef962cca83800376 1423 mouse-speed_1.5-1.dsc
+ af0e67aa443e90ca5df7bf936380c05917fda2c6 4373 mouse-speed_1.5-1.tar.gz
+Checksums-Sha256: 
+ ca1f580fc0022999905d95d42af4ea9f0e596f2975c789a017cdd78c2a799ecb 1423 mouse-speed_1.5-1.dsc
+ 48d6b4aeaca89f45c01066e5f90e2cb782c120fcab7d8827fc04106ae77b28d6 4373 mouse-speed_1.5-1.tar.gz
+Files: 
+ 1f542a97383fd48a487a5f4c52fb848d 1423 x11 optional mouse-speed_1.5-1.dsc
+ e19545c063ad8d07f619a8c5e06c6004 4373 x11 optional mouse-speed_1.5-1.tar.gz
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQIUBAEBAgAGBQJTxHfZAAoJEJU0Ntb9bvisXQ0Pv0cyKdoSUE8l0HkIrNepDaco
+P8r5sh+RnuJi0NW2Rk3o17SFQXxFe7nn9g6W+bxV/XbkqpJcKeecvRSyt/7JYzLF
+uSMDkjSbg9DVIPlZuNnwtQ1UPwY+DWWfiZZS7oBIJcXwFdhYwnrFn+HVtRT/bX/7
+34fWHeXLmkvWCp9CSpl3QAgo4oqbyOrtcx7NA9DvLiCnPvi8xBZyQHL9scpZ+lpf
+aUIp8oSDnQICHr4zNaqFpyihbnIxA7aiteKADTWTZWzHxHxxJmhKCds3aW507stA
+lozXVvhqegZvDufu8Bw16qEG8xG9kagbFxTrOi0GGqAII15s7kOGPFFI44X8TpN3
+QRe9thIUCcFyamrF53g/vEu9Uncv2Bd8yK+urFFRJttmcg/ZXOTnsqFv+ueS0eZ/
+fPGBIOI312+klPVIBXY16TUofP1/Kbw1Tk/exr2/HTbTwbmL58ONCAhzLCX+SOzP
+EkcpzyJeX3d07sYbaFA+YipUp1VQHchI5WgJU0WHtjsvjlZhLgRWr+Rbd0YDKc9Q
+usRBdSNpB+oMV/G83/Ef55TifA40x18jtu+P93X2b5YTykequ5ofEC5gVAP5F0Ax
+rlygWPqLgcIdSKBTBclS3FSVKPaFozaa04X6loWsYe1VWqvf82hze/5vItX5xqmR
+igyy+lLGiw==
+=kKsF
+-----END PGP SIGNATURE-----
