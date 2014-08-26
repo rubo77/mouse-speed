@@ -1,6 +1,8 @@
 #mouse-speed
 
-Bash script to increase or decrease the speed of your mouse and touchpad
+mouse-speed is a bash script to increase or decrease the speed of your mouse and touchpad.  
+The main usage is to slow down the mouse as a penalty in the RSI-tool `typebreak` also installed by this package.
+`typebreak` warns you every 10 minutes to focus some far objects. Eye breaks are essential to the typist. These entail simply looking away from the computer screen every so often (every 15 minutes) and focusing on a distant object or picture for about 30 seconds. Constantly looking at a computer screen impedes blinking, which in turn affects the amount of lubricant added to the eye. 
 
 ### usage
 decellerate the mouse for 50%:
@@ -15,6 +17,10 @@ reset mouse speed to 100%
 set mouse speed to 30%
 > mouse-speed -s 30
 
+
+## typebreak
+ * Simply copy `mouse-speed` and `typebreak` in `/usr/bin/` and make it executable.
+ * Add typebreak to your startup programs.
 
 ## Implementation in RSIBreak
 In [RSIBreak](https://apps.ubuntu.com/cat/applications/precise/rsibreak/) this is especially useful:
