@@ -1,10 +1,31 @@
 #!/bin/bash
 
 ######## configuration ##########
-# seconds between messages
-microbreak_time=600
+# seconds between micro breaks
+microbreak_time=$(( 10 * 60 ))
+# micro break duration in seconds
+microbreak_duration=15
+# seconds between long breaks
+longbreak_time=$(( 120 * 60 ))
+
 # message to display 
 message="Try focussing a far object outside the window with the eye to relax!"
+longbreak_message="Change your seating or continue work in a standing/sitting position"
+#postpone label
+postpone="Postpone"
+
+# global zoom of your window manager:
+ZOOM=2
+# height in px of the top system-bar:
+TOPMARGIN=57
+# sum in px of all horizontal borders:
+HORIZONTALMARGIN=40
+# get width of screen and height of screen
+SCREEN_WIDTH=$(xwininfo -root | awk '$1=="Width:" {print $2}')
+SCREEN_HEIGHT=$(xwininfo -root | awk '$1=="Height:" {print $2}')
+# width and height
+W=$(( $SCREEN_WIDTH / $ZOOM - 2 * $HORIZONTALMARGIN ))
+H=$(( $SCREEN_HEIGHT / $ZOOM - 2 * $TOPMARGIN ))
 
 function slow_down(){
 	#zenity --warning --text "slow down mouse";
@@ -12,15 +33,21 @@ function slow_down(){
 }
 
 while true; do
+	# short loop every few minutes to look around
 	sleep $microbreak_time
 	(
-	echo "99"; sleep 8
+	echo "99"; sleep $(( $microbreak_duration - 2 ))
 	echo "# Mouse speed reset to 100%"; sleep 2
 	echo "100"
-	) | if zenity --progress --text "$message" --percentage=0 --auto-close  --height=800 --width=800 --pulsate; then
+	) | if zenity --progress --text "$message" --percentage=0 --auto-close  --height=$H --width=$W --pulsate --title="typebreak" --cancel-label="$postpone"; then
 		#zenity --info --text "Maus wieder schnell!"
 		mouse-speed -r
 	else 
 		slow_down
 	fi
+done &
+while true; do
+	# second long loop to change seat position
+    sleep $longbreak_time
+    zenity --warning --text "$longbreak_message" --title="typebreak"
 done
