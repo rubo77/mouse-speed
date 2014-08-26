@@ -13,19 +13,14 @@ function slow_down(){
 
 while true; do
 	sleep $microbreak_time
-	if ! zenity --warning --text "$message" --height=800 --width=800; then
+	(
+	echo "99"; sleep 8
+	echo "# Mouse speed reset to 100%"; sleep 2
+	echo "100"
+	) | if zenity --progress --text "$message" --percentage=0 --auto-close  --height=800 --width=800 --pulsate; then
+		#zenity --info --text "Maus wieder schnell!"
+		mouse-speed -r
+	else 
 		slow_down
-	else
-		(
-		echo "99"; sleep 8
-		echo "# Maus speed reset to 100%"; sleep 2
-		echo "100"
-		) | if zenity --progress --text "$message" --percentage=0 --auto-close  --height=800 --width=800 --pulsate; then
-			#zenity --info --text "Maus wieder schnell!"
-			mouse-speed -s 100
-		else 
-			slow_down
-		fi
-		
 	fi
 done
