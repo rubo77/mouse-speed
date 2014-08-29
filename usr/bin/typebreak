@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# requires these packages from ubuntu repository:
+# wmctrl, zenity, x11-utils 
+# and the script mouse-speed
+
+# This procect on git:        https://github.com/rubo77/mouse-speed
+
+
 ######## configuration ##########
 # seconds between micro breaks
 microbreak_time=$(( 10 * 60 ))

@@ -128,9 +128,11 @@ while true; do
     
   DEVELOPER INFO
   
+    requires the package xinput
+    
     In case your mouse or touchpad are not recognized, adapt this script
     to the right mouse and touchpad devices with the help of the command:
-      xinput --list --short
+    $ xinput --list --short
     add the right names for your devices in the configuration section of
     this script
     
