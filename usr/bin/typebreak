@@ -14,6 +14,8 @@ longbreak_message="Change your seating or continue work in a standing/sitting po
 #postpone label
 postpone="Postpone"
 
+window_title="typebreak"
+
 # global zoom of your window manager:
 ZOOM=2
 # height in px of the top system-bar:
@@ -39,7 +41,7 @@ while true; do
 	echo "99"; sleep $(( $microbreak_duration - 2 ))
 	echo "# Mouse speed reset to 100%"; sleep 2
 	echo "100"
-	) | if zenity --progress --text "$message" --percentage=0 --auto-close  --height=$H --width=$W --pulsate --title="typebreak" --cancel-label="$postpone"; then
+	) | if ( sleep 1 && wmctrl -F -a "$window_title" -b add,above ) & ( zenity --progress --text "$message" --percentage=0 --auto-close  --height=$H --width=$W --pulsate --title="$window_title" --cancel-label="$postpone" ); then
 		#zenity --info --text "Maus wieder schnell!"
 		mouse-speed -r
 	else 
@@ -49,5 +51,5 @@ done &
 while true; do
 	# second long loop to change seat position
     sleep $longbreak_time
-    zenity --warning --text "$longbreak_message" --title="typebreak"
+    zenity --warning --text "$longbreak_message" --title="$window_title - long break"
 done
