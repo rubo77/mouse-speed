@@ -45,11 +45,13 @@ while true; do
 	# short loop every few minutes to look around
 	sleep $microbreak_time
 	(
-	echo "99"; sleep $(( $microbreak_duration - 2 ))
-	echo "# Mouse speed reset to 100%"; sleep 2
+	echo "99"
+	sleep $(( $microbreak_duration - 2 ))
+	echo "# Mouse speed reset to 100%"
+	sleep 2
 	echo "100"
-	) | if ( sleep 1 && wmctrl -F -a "$window_title" -b add,above ) & ( zenity --progress --text "$message" --percentage=0 --auto-close  --height=$H --width=$W --pulsate --title="$window_title" --cancel-label="$postpone" ); then
-		#zenity --info --text "Maus wieder schnell!"
+	) | if ( sleep 1 && wmctrl -F -a "$window_title" -b add,maximized_vert,maximized_horz && sleep 3 &&  wmctrl -F -a "$window_title" -b add,above ) & ( zenity --progress --text "$message" --percentage=0 --auto-close  --height=$H --width=$W --pulsate --title="$window_title" --cancel-label="$postpone" ); then
+		#zenity --info --text "Maus normal speed!"
 		mouse-speed -r
 	else 
 		slow_down
