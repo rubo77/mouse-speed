@@ -238,15 +238,17 @@ fi
 
 #set mouse
 if [ "$MOUSE" ]; then
-  echo setting mouse-speed for '"'$MOUSE'"'
+ echo "$MOUSE"|while read -r M; do
+  echo setting mouse-speed for '"'$M'"'
   ( $VERBOSE && set -x
-  xinput --set-prop "$MOUSE" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
-  xinput --set-prop "$MOUSE" "Device Accel Velocity Scaling" $MOUSE_SCALING
+  xinput --set-prop "pointer:$M" "Device Accel Constant Deceleration" $MOUSE_DECELERATION
+  xinput --set-prop "pointer:$M" "Device Accel Velocity Scaling" $MOUSE_SCALING
   )
   if [ $VERBOSE == true ]; then
     echo mouse now set to:
-    xinput --list-props "$MOUSE"|grep Accel
+    xinput --list-props "$M"|grep Accel
   fi
+ done
 elif [ $VERBOSE == true ]; then
   echo 'Mouse device not found in xinput --list'
   echo "If you have a mouse installed that wasn't found,"
