@@ -1,0 +1,134 @@
+#!/bin/bash
+
+VERSION="0.4"
+
+# ---------- configuration -----------#
+# Most touchpads contain the string "touchpad" (this is case insensitive)
+TOUCHPAD_STRING="touchpad"
+
+# -------- end of configuration -------#
+
+#--------- installation --------------#
+# In case you use a touchpad without the string "touchpad" in it's identifier string adapt the 
+# variable TOUCHPAD_STRING in the configuration section
+# search for the right string with
+# xinput --list --short
+
+#-------------- Author:  -------------#
+# by Ruben Barkow
+# Website: 	http://coffeeplusplus.z11.de
+# 		An ergonomic alternative keyboard-layout for typing with both hands and optional with only one (english and german)
+
+#--- Copyright and license -----------#
+#This code is covered by the GNU General Public License 3.
+
+# state-file where the current speed is saved:
+#############
+
+VERBOSE=false
+
+# Execute getopt on the arguments passed to this program, identified by the special character $@
+PARSED_OPTIONS=$(getopt -n "$0"  -o hrs:vVd:a: --long "help,verbose,vv,version"  -- "$@")
+
+#Bad arguments, something has gone wrong with the getopt command.
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
+# A little magic, necessary when using getopt.
+eval set -- "$PARSED_OPTIONS"
+
+# Now go through all options with a case and using shift to analyse one argument at a time.
+# $1 identifies the first argument, and when we use shift we discard the first argument, 
+# so $2 becomes $1 and goes again through the case.
+while true; do
+  case "$1" in
+
+    -h|--help)
+      echo "
+
+  NAME:
+
+    palm-detectin-on
+
+  DESCRIPTION:
+
+    this script sets the palm detection on your  touchpad 
+    to a relative percentage of the previous speed or to a certain absolute percentage
+
+  GLOBAL OPTIONS:
+    
+    Mandatory arguments to long options are mandatory for short options too.
+    
+    -h, --help 
+        Display help documentation
+    -V, --version 
+        Display version information
+    -v, --verbose
+        more verbose output
+    --vv
+        even more verbose (for debugging onny)
+   
+  USAGE EXAMPLES:
+      
+    palm-decection-on
+    
+  DEVELOPER INFO
+  
+    requires the package xinput
+    
+    In case your mouse or touchpad are not recognized, adapt this script
+    to the right mouse and touchpad devices with the help of the command:
+    $ xinput --list --short
+    add the right names for your devices in the configuration section of
+    this script
+    
+"
+      exit
+      shift;;
+
+    -V|--version)
+      echo "mouse-speed $VERSION"
+      exit 
+      shift;;
+    
+    -v|--verbose)
+      VERBOSE=true
+      # for the verbose output:
+      PS4="executing: "
+      shift;;
+
+    --vv)
+      # very verbose for debugging
+      VERBOSE=true
+      set -x
+      shift;;
+
+    --)
+      shift
+      break;;
+  esac
+done
+
+#set touchpad
+TP=$(xinput --list --short | grep -i $TOUCHPAD_STRING | cut -f 1 | cut -d" " -f 5- | sed 's/\s\+$//g')
+if [ "$TP" ]; then
+  if [ $VERBOSE == true ]; then
+    echo was before:
+    xinput --list-props "$TP"|grep Palm
+  fi
+  ( $VERBOSE && set -x
+  xinput --set-prop "$TP" "Synaptics Palm Detection" 1
+  xinput --set-prop "$TP" "Synaptics Palm Dimensions" 5, 5
+  )
+  if [ $VERBOSE == true ]; then
+    echo touchpad now set to:
+    xinput --list-props "$TP"|grep Palm
+  fi
+elif [ $VERBOSE == true ]; then
+  echo 'Touchpad device "'$TOUCHPAD_STRING'" not in xinput --list'
+  echo call '"'$0 -help'"' for help
+  echo
+fi
+
+exit 0
