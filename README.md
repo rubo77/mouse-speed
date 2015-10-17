@@ -22,6 +22,9 @@ set mouse speed to 30%
  * Simply copy `mouse-speed` and `typebreak` into `/usr/bin/` and make it executable.
  * Add typebreak to your startup programs.
 
+### Implementation in Workrave
+Implementation is easy, see https://github.com/rcaelers/workrave/pull/47
+
 ### Implementation in RSIBreak
 In [RSIBreak](https://apps.ubuntu.com/cat/applications/precise/rsibreak/) this is especially useful:
 
