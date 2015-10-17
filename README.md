@@ -19,10 +19,10 @@ set mouse speed to 30%
 
 
 ## typebreak
- * Simply copy `mouse-speed` and `typebreak` in `/usr/bin/` and make it executable.
+ * Simply copy `mouse-speed` and `typebreak` into `/usr/bin/` and make it executable.
  * Add typebreak to your startup programs.
 
-## Implementation in RSIBreak
+### Implementation in RSIBreak
 In [RSIBreak](https://apps.ubuntu.com/cat/applications/precise/rsibreak/) this is especially useful:
 
 you can set this program, to start, when a microbreak starts 
@@ -36,6 +36,14 @@ options for the start of a "micro-break":
 
 Option to for when a "micro-break" ends:
 > mouse-speed -r
+
+## Palm detection
+I also created a script that auto detects your touchpad and sets the palm detection to a reasonable value, call this on the console for verbose output with
+```
+palm-decection-on -v
+```
+copy `palm-decection-on` to `/usr/bin/` and make it executable.
+ * Add palm-decection-on to your startup programs.
 
 ## Installation
 In case you use a touchpad without the string "touchpad" in its identifier string adapt the first few configuration lines:  
