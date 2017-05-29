@@ -1,4 +1,4 @@
-#mouse-speed
+# mouse-speed
 
 mouse-speed is a bash script to increase or decrease the speed of your mouse and touchpad.  
 The main usage is to slow down the mouse as a penalty in the RSI-tool `typebreak` also installed by this package.
